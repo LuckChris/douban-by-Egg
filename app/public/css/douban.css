@@ -1,0 +1,21 @@
+.wrapper{
+  min-width:996px;
+}
+.header-h1 {
+  width: 140px;
+}
+.col-md-2 .thumbnail{
+  position: relative;
+  height: 282px;
+}
+.col-md-2 .thumbnail .caption{
+  position: absolute;
+  width:100%;
+  bottom:6px;
+  text-align: center;
+}
+.vertical-line {
+  display: inline-block;
+  padding: 15px 0;
+}
+
