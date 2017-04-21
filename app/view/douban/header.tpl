@@ -1,17 +1,35 @@
-<div class="container">
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="row">
+      <ul class="head-nav nav list-inline">
+        <li class="nav-head-li">
+          <a href="/" class="navbar-link nav-title">
+            BY豆瓣电影
+          </a>
+        </li>
+        <li class="pull-right">
+          {% if(userInfo) %}
+            <a class="navbar-link" href="/user/index/{{userInfo.id}}">{{userInfo.userName}}</a>
+            <span class="vertical-line">|</span>
+            <a href="/login/logout" class="navbar-link">退出</a>
+          {% else %}
+            <a id='signin' href="#" class="navbar-link">登录</a>
+            <span class="vertical-line">|</span>
+            <a id='signup' href="#" class="navbar-link">注册</a>
+          {% endif %}
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container padding-top">
   <div class="row">
     <div class="page-header clearfix">
-      <a style="text-decoration:none;" href="/douban/index">
-        <h1 class="header-h1">Douban</h1>
-      </a>
-      <a style="text-decoration:none;" href="http://eggjs.org/zh-cn">
-        <div class="header-h1 text-right">
-          <small>powered by egg.js</small>
-        </div>
-      </a>
-      <div class="col-md-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <form method='get' action='/douban/searchMovie'>
-          <div class="input-group col-sm-4 pull-right">
+          <div class="input-group col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right">
             <input type="text" class="form-control" name='q'>
             <span class="input-group-btn">
               <button class="btn btn-primary" type='submit'>
@@ -24,30 +42,16 @@
     </div>
   </div>
 </div>
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a href="/" class="navbar-brand">BY豆瓣电影</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      {% if(userInfo) %}
-        <li><a href="/user/index/{{userInfo.id}}">{{userInfo.userName}}</a></li>
-        <li><span class="vertical-line">|</span></li>
-        <li><a href="/login/logout" class="navbar-link">退出</a></li>
-      {% else %}
-        <li><a id='signin' href="#" class="navbar-link">登录</a></li>
-        <li><span class="vertical-line">|</span></li>
-        <li><a id='signup' href="#" class="navbar-link">注册</a></li>
-      {% endif %}
-    </ul>
-  </div>
-</div>
 
-<div id="signinModal" class="modal fade">
-  <div class="modal-dialog">
+
+<div id="signinModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="signinTitle">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form action="/login/loginAction" method='POST'>
-        <h2 class="modal-header">登录</h2>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="signinTitle">登录</h4>
+        </div>
         <div class="modal-body">
           <div class="form-group">
             <label for="username">用户名</label>
@@ -67,11 +71,14 @@
   </div>
 </div>
 
-<div id="signupModal" class="modal fade">
-  <div class="modal-dialog">
+<div id="signupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="signupTitle">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form action="/user/addAction" method='POST'>
-        <h2 class="modal-header">注册</h2>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="signupTitle">注册</h4>
+        </div>
         <div class="modal-body">
           <div class="form-group">
             <label for="username">用户名</label>
@@ -90,12 +97,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $('#signin').click(function(){
-    $('#signinModal').modal()
-  })
-  $('#signup').click(function(){
-    $('#signupModal').modal()
-  })
-</script>

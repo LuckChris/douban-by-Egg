@@ -9,6 +9,7 @@ module.exports = app => {
       this.inTheaters = this.config.inTheaters;
       this.comingSoon = this.config.comingSoon;
       this.top250 = this.config.top250;
+      this.subject = this.config.subject;
     }
     * request(api, opts) {
       const options = Object.assign({
@@ -20,16 +21,18 @@ module.exports = app => {
       return result.data;
     }
 
+    // 获取首页数据
     * getMovies(category) {
-      let inTheatersMovies = yield this.getCatgeMovies(this.inTheaters);
-      let ComingSoonMovies = yield this.getCatgeMovies(this.comingSoon);
-      let Top250Movies = yield this.getCatgeMovies(this.top250);
+      let inTheatersMovies = yield this.getCateMovies(this.inTheaters);
+      let ComingSoonMovies = yield this.getCateMovies(this.comingSoon);
+      let Top250Movies = yield this.getCateMovies(this.top250);
       let movies = [];
       movies.push(inTheatersMovies, ComingSoonMovies, Top250Movies);
       return movies;
     }
 
-    * getCatgeMovies(category, p=1) {
+    // 根据in_theater coming_soon top250 分类获取电影数据
+    * getCateMovies(category, p=1) {
       // 每页展示12条数据
       let count = 12;
       let start = (p-1)*count;
@@ -52,6 +55,17 @@ module.exports = app => {
       result.category = '/douban/searchMovie';
       return result;
     }
+
+    // 电影详情页
+    * getMovieDetail(movieId) {
+      let url = this.subject + '/' + movieId;
+      let detail = yield this.request(url, {
+        dataType: 'json',
+      });
+      return detail;
+    }
+
+    
   }
   return Douban;
 }

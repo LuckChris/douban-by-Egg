@@ -4,7 +4,7 @@ module.exports = options => {
     // let userInfo = this.app.locals.userInfo;
     if(!userInfo) {
       console.log('no login');
-      this.redirect('/login/login');
+      return this.redirect('/login/login');
     }
     yield next;
   }

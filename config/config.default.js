@@ -13,16 +13,12 @@ module.exports = appInfo => {
     '/favicon.ico': fs.readFileSync(path.join(appInfo.baseDir, 'app/public/favicon.png')),
   };
 
-  config.news = {
-    pageSize: 30,
-    serverUrl: 'https://hacker-news.firebaseio.com/v0',
-  };
-
   config.douban = {
     doubanBaseUrl: 'http://api.douban.com/v2/movie',
     inTheaters: 'in_theaters',
     comingSoon: 'coming_soon',
-    top250: 'top250'
+    top250: 'top250',
+    subject: 'subject' 
   }
 
   config.mysql = {
@@ -37,6 +33,7 @@ module.exports = appInfo => {
     agent: false
   };
 
+
   config.middleware = [
     'checklogin'
   ]
@@ -46,7 +43,8 @@ module.exports = appInfo => {
         '/login/login',
         '/login/loginAction',
         '/login/logout',
-        '/user/add'
+        '/user/add',
+        '/user/addAction'
       ]
       let url = ctx.request.url
       return ignoreUrl.some((item)=>{

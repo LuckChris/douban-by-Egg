@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/public/css/douban.css"/>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src="/public/js/common.js"></script>
     {% block head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
   </head>

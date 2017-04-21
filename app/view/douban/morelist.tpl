@@ -11,15 +11,15 @@
         </div>
         <div class="panel-body">
           {% for subject in movies.subjects.slice(0,12) %}
-            <div class="col-md-2">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
               <div class="thumbnail">
-                <a href="/movie/{{subject.id}}">
+                <a href="/douban/movieDetail/{{subject.id}}">
                   <img src="{{subject.images.medium}}" alt="{{subject.title}}">
                 </a>
                 <div class="caption">
                   <h4>{{subject.title}}</h4>
                   <p>
-                    <a href="/movie/{{subject.id}}" class="btn btn-primary">观看预告片</a>
+                    <a href="/douban/movieDetail/{{subject.id}}" class="btn btn-primary">观看预告片</a>
                   </p>
                 </div>
               </div>

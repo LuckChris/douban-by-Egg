@@ -3,7 +3,7 @@
 module.exports = app => {
   class LoginController extends app.Controller {
     * login() {
-      yield this.ctx.render('login/login.tpl');
+      yield this.ctx.render('sign/signin.tpl');
     }
     * loginAction() {
       let username = this.ctx.request.body.username
@@ -13,8 +13,7 @@ module.exports = app => {
 
       if(!user || (user.password != pwd)) {
         console.log('user wrong!');
-        this.ctx.redirect('/login/login')
-        return;
+        return this.ctx.redirect('/login/login')
       }
       yield this.ctx.service.userInfo.updateLastedLoginTime(user.id)
       delete user.password;

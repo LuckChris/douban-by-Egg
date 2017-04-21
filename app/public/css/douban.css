@@ -1,8 +1,24 @@
-.wrapper{
-  min-width:996px;
+.head-navhead {
+  margin:0;
+  padding:0;
+}
+.head-nav {
+  height:40px;
+  line-height: 40px;
+}
+.padding-top {
+  padding-top: 20px;
+}
+.head-nav li {
+  display: inline-block;
+  width: auto;
 }
 .header-h1 {
   width: 140px;
+}
+.nav-title {
+  font-size: 20px;
+  font-weight: bold;
 }
 .col-md-2 .thumbnail{
   position: relative;
@@ -16,6 +32,20 @@
 }
 .vertical-line {
   display: inline-block;
-  padding: 15px 0;
 }
 
+.manager-user {
+  margin-left:10px;
+}
+
+.li-no-border li {
+  border: none;
+}
+.navbar {
+  min-height: auto;
+}
+
+.nav>li>a {
+  display: inline-block;
+  padding: 4px;
+}

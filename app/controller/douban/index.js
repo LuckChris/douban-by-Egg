@@ -1,6 +1,7 @@
 'use strict';
 
 const moment = require('moment');
+const { pagination } = require('../../service/common')
 
 module.exports = app => {
   class IndexController extends app.Controller {
@@ -13,6 +14,7 @@ module.exports = app => {
       console.log('userInfo:',userInfo);
       yield ctx.render('douban/index.tpl', { movies: movies, userInfo: userInfo });
     }
+
     * getMore() {
       let ctx = this.ctx;
       let url = ctx.request.url;
@@ -23,9 +25,8 @@ module.exports = app => {
       }
       let category = ctx.params.category;
       
-      let movies = yield ctx.service.douban.getCatgeMovies(category, p) || [];
-      console.log(movies);
-      let totalCount = Math.ceil(movies.total/12);
+      let movies = yield ctx.service.douban.getCateMovies(category, p) || [];
+      let { startCount, totalCount } = pagination(movies.total, p);
       yield ctx.render('douban/morelist.tpl', {
         userInfo: ctx.session.userInfo,
         search: false,
@@ -33,16 +34,27 @@ module.exports = app => {
         category: category,
         movies: movies,
         showFooter:true,
+        startCount: startCount,
         totalCount: totalCount
       });
     }
+
     * searchMovie() {
       let ctx = this.ctx;
       let url = ctx.request.url;
+      console.log('url:',url);
+      
+      // 下面是用来去除 url中带的csrf，可以去掉，也可以不去掉
+      // let formatUrl = url.match(/.+\?.+?(&.+)/)[1];
+      // url = url.replace(formatUrl, '');
+      // if(formatUrl.indexOf('&p=') !== -1) {
+      //   // 如果不是请求第一页数据，也就是url上带 &p=
+      //   url = url + formatUrl.replace(/.+(?=&)/,'');
+      // }
       let q = '', p=1;
-      let arr1 = url.match(/\/douban\/searchMovie\?q\=(.*)/);
+      let arr1 = url.match(/\/douban\/searchMovie\?q=(.*)/);
       if(arr1 !== null) {
-        let arr2 = arr1[1].match(/(.+)&p=(\d+)/);
+        let arr2 = arr1[1].match(/(.*)&p=(\d+)/);
         if(arr2 !== null) {
           q = arr2[1]
           p = arr2[2];
@@ -52,7 +64,8 @@ module.exports = app => {
       }
       let movies = yield ctx.service.douban.searchMovies(q, p) || [];
       let category = movies.category;
-      let totalCount = Math.ceil(movies.total/12);
+      let { startCount, totalCount } = pagination(movies.total, p);
+      
       yield ctx.render('douban/morelist.tpl', {
         q: q,
         currentPage: p,
@@ -61,8 +74,19 @@ module.exports = app => {
         movies: movies,
         showFooter:true,
         totalCount: totalCount,
+        startCount: startCount,
         search: true
       });
+    }
+
+    * movieDetail() {
+      let ctx = this.ctx;
+      let movieId = ctx.params.movieid;
+      let movie = yield ctx.service.douban.getMovieDetail(movieId) || [];
+      console.log('movieDetail:',movie);
+      yield ctx.render('douban/detail.tpl', {
+        movie: movie
+      })
     }
   }
   return IndexController;
