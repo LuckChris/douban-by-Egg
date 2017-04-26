@@ -57,7 +57,7 @@
           <strong style="font-size: 20px;">评论区</strong>
         </div>
         <div class="panel-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div id="comments" class="row">
+          <div id="commentssss" class="row">
             <form id="commentForm" action="/comments/add" method="post">
               <div class="form-group">
                 {% if(userInfo) %}
@@ -68,7 +68,7 @@
                   <input id="commentId" type="hidden" name="comment[commentId]">
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <textarea class="col-lg-12 col-md-12 col-sm-12 col-xs-12" name="comment[content]" rows="4"></textarea>
+                <textarea id="txt-area" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" name="comment[content]" rows="4"></textarea>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
                 {% if(userInfo) %}
@@ -85,28 +85,23 @@
                 <li class="media">
                   <div class="pull-left">
                     <a class="comment" href="#comments" data-cid="{{item.id}}" data-tid="{{item.fromId}}">
-                      <img class="media-object" style="width: 64px; height: 64px;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
+                      <img class="media-object radius rotate" style="width: 64px; height: 64px;" src="{{item.avatar}}" data-toggle="tooltip-avatar" data-placement="right" title="点击进行回复">
                     </a>
                   </div>
                   <div class="media-body">
                     <h4 class="comment media-heading" data-cid="{{item.id}}" data-tid="{{item.fromId}}">
-                      <a href="#comments" class="style-none">{{item.fromName}}</a>
+                      <a href="#comments" class="style-none"  data-toggle="tooltip-avatar" data-placement="right" title="点击进行回复">{{item.fromName}}</a>
                       <small class="pull-right text-muted">{{item.create_time | formatTime}}</small>
                     </h4>
                     <pre>{{item.content}}</pre>
                     {% if(item.replies) %}
                       {% for reply in item.replies %}
                         <div class="media">
-                          <div class="pull-left">
-                            <a class="comment" href="#comments" data-cid="{{reply.commentId}}" data-tid="{{reply.fromId}}">
-                              <img class="media-object" style="width: 64px; height: 64px;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
-                            </a>
-                          </div>
                           <div class="media-body">
                             <h4 class="media-heading">
-                              <a class="comment style-none" href="#comments" data-cid="{{reply.commentId}}" data-tid="{{reply.fromId}}">{{reply.fromName}}</a>
+                              <a class="comment style-none" href="#comments" data-cid="{{reply.commentId}}" data-tid="{{reply.fromId}}" data-toggle="tooltip-avatar" data-placement="right" title="点击进行回复">{{reply.fromName}}</a>
                               <small class="text-info">&nbsp;回复&nbsp;</small>
-                              <a class="comment style-none" href="#comments" data-cid="{{reply.commentId}}" data-tid="{{reply.toId}}">{{reply.toName}}</a>
+                              <a class="comment style-none" href="#comments" data-cid="{{reply.commentId}}" data-tid="{{reply.toId}}" data-toggle="tooltip-avatar" data-placement="right" title="点击进行回复">{{reply.toName}}</a>
                               <small class="pull-right text-muted">{{item.create_time | formatTime}}</small>
                             </h4>
                             <p>{{reply.reply_content}}</p>

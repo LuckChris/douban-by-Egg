@@ -79,16 +79,15 @@ module.exports = app => {
         let newInfo = {}
         let result = yield ctx.service.userInfo.updatePwdById(userId, username, newpwd);
         if(result>0) {
-          console.log('更新密码成功');
           ctx.body = {
             success: 1,
-            msg: '更新密码成功！'
+            msg: '更新信息成功！'
           }
         } else {
           console.log('更新密码失败');
           return ctx.body = {
             success: 0,
-            msg: '更新密码失败！'
+            msg: '更新信息失败！'
           }
         }
       }

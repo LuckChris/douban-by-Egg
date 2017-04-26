@@ -58,6 +58,7 @@ module.exports = app => {
             userInfo = yield ctx.service.userInfo.getUserById(item.fromId);
             if(userInfo) {
               item.fromName = userInfo.userName;
+              item.avatar = userInfo.avatar;
             }
             return item;
           });

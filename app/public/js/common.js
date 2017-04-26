@@ -7,7 +7,9 @@ $(function() {
     modal.find('.modal-body').text(content);
     modal.modal('show');
     modal.on('hidden.bs.modal', function (e) {
-      cb();
+      if(typeof(cb) === 'function') {
+        cb();
+      }
     });
     setTimeout(()=>{
       modal.modal('hide');
@@ -25,6 +27,8 @@ $(function() {
     var commentId=target.data('cid');
     $('#toId').val(toId);
     $('#commentId').val(commentId);
+    // 滚动到输入框
+    window.scrollTo(0,$('#txt-area').offset().top - $('.navbar-fixed-top').height()-10);
   })
 
   // 根据name读取cookie
@@ -89,6 +93,9 @@ $(function() {
       })
     } else {
       // 说明是修改头像
+      if($('#avatar')[0].files.length === 0) {
+        return myModal('请选择图片！');
+      }
       let formData = new FormData($('#avatar-form')[0]);
       $.ajax({
         url: actionUrl,
@@ -164,4 +171,7 @@ $(function() {
       }
     })
   })
+
+  // 鼠标滑过评论区下用户头像，出现 “点击回复” 的 tooltip
+  $('[data-toggle="tooltip-avatar"]').tooltip();
 })
