@@ -15,3 +15,5 @@ $ open http://localhost:7001/
 >8. `session` 的使用
 > 界面使用 `Bootstrap` 布局，自适应屏幕大小
 
+![image](https://github.com/accforgit/news_tp/blob/master/douban_egg.gif)
+
