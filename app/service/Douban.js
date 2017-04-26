@@ -64,8 +64,6 @@ module.exports = app => {
       });
       return detail;
     }
-
-    
   }
   return Douban;
 }

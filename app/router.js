@@ -3,11 +3,13 @@
 module.exports = app => {
   app.redirect('/', '/douban/index');
 
+  // 电影
   app.get('/douban/index', app.controller.douban.index.index);
   app.get('/douban/more/:category', app.controller.douban.index.getMore);
   app.get('/douban/searchMovie', app.controller.douban.index.searchMovie);
   app.get('/douban/movieDetail/:movieid', app.controller.douban.index.movieDetail);
 
+  // 用户
   app.get('/user/index/:id', app.controller.user.user.index);
   app.post('/user/update/:id', app.controller.user.user.update);
   app.get('/user/add/', app.controller.user.user.add);
@@ -18,4 +20,7 @@ module.exports = app => {
   app.get('/login/login', app.controller.login.login);
   app.post('/login/loginAction', app.controller.login.loginAction);
   app.get('/login/logout', app.controller.login.logout);
+
+  // 评论
+  app.post('/comments/add', app.controller.douban.comments.addComments);
 };

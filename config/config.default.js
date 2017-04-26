@@ -13,12 +13,16 @@ module.exports = appInfo => {
     '/favicon.ico': fs.readFileSync(path.join(appInfo.baseDir, 'app/public/favicon.png')),
   };
 
+  config.staticServer = {
+    staticPath: path.join(appInfo.baseDir, 'app'),
+    imagePath: '/public/images'
+  }
   config.douban = {
     doubanBaseUrl: 'http://api.douban.com/v2/movie',
     inTheaters: 'in_theaters',
     comingSoon: 'coming_soon',
     top250: 'top250',
-    subject: 'subject' 
+    subject: 'subject'
   }
 
   config.mysql = {
@@ -27,16 +31,16 @@ module.exports = appInfo => {
       port: '3306',
       user: 'root',
       password: 'root',
-      database: 'eggHacknews'
+      database: 'douban_egg'
     },
     app: true,
     agent: false
   };
 
-
   config.middleware = [
     'checklogin'
   ]
+  
   config.checklogin = {
     ignore(ctx) {
       let ignoreUrl = [

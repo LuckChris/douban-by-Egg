@@ -6,6 +6,16 @@
   height:40px;
   line-height: 40px;
 }
+.thumb-avatar {
+  width:32px;
+  height:32px;
+  border-radius: 50%;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+.rotate:hover {
+  transform: rotate(360deg);
+}
 .padding-top {
   padding-top: 20px;
 }
@@ -48,4 +58,24 @@
 .nav>li>a {
   display: inline-block;
   padding: 4px;
+}
+
+a.style-none {
+  color: #333;
+  text-decoration: none;
+}
+a.tab-change{
+  color: #777;
+  text-decoration: none;
+}
+
+
+input#avatar {
+  outline: none;
+  cursor: pointer;
+  margin-bottom:10px;
+}
+
+.tab-content-padding {
+  padding: 16px 10px;
 }

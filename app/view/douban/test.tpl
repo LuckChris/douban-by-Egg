@@ -1,3 +1,3 @@
 <div>
-  {{ctx}}
+  {{movies}}
 </div>

@@ -10,4 +10,4 @@ exports.view = {
 exports.mysql = {
   enable: true,
   package: 'egg-mysql'
-}
+};

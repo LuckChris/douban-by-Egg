@@ -9,19 +9,34 @@ module.exports = app => {
     }
 
     * getUserById(userId) {
-      const userInfo = yield this.app.mysql.get('users', { id: userId });
+      let userInfo = yield this.app.mysql.get('users', { id: userId });
       return userInfo;
+    }
+    * getUserByIds(ids) {
+      let that = this;
+      return yield ids.map(function* (id){
+        return yield that.getUserById(id);
+      });
     }
     * getUserByName(userName) {
       const userInfo = yield this.app.mysql.get('users', { userName: userName });
       return userInfo;
     }
 
-    * updateUserById(userId, userName, password) {
+    * updatePwdById(userId, userName, password) {
       const userInfo = {
         id: parseInt(userId),
         userName: userName,
         password: password
+      }
+      const result = yield this.app.mysql.update('users', userInfo);
+      return result.affectedRows;
+    }
+
+    * updateAvatarById(userId, picUrl) {
+      const userInfo = {
+        id: parseInt(userId),
+        avatar: picUrl
       }
       const result = yield this.app.mysql.update('users', userInfo);
       return result.affectedRows;

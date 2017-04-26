@@ -9,13 +9,14 @@
         </li>
         <li class="pull-right">
           {% if(userInfo) %}
+            <a class="navbar-link" href="/user/index/{{userInfo.id}}"><img class="thumb-avatar rotate" src="{{userInfo.avatar}}" alt=":-D"></a>
             <a class="navbar-link" href="/user/index/{{userInfo.id}}">{{userInfo.userName}}</a>
             <span class="vertical-line">|</span>
             <a href="/login/logout" class="navbar-link">退出</a>
           {% else %}
-            <a id='signin' href="#" class="navbar-link">登录</a>
+            <a id='signin' href="#" class="navbar-link" data-toggle="modal" data-target="#signinModal">登录</a>
             <span class="vertical-line">|</span>
-            <a id='signup' href="#" class="navbar-link">注册</a>
+            <a id='signup' href="#" class="navbar-link" data-toggle="modal" data-target="#signupModal">注册</a>
           {% endif %}
         </li>
       </ul>
@@ -54,12 +55,12 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="username">用户名</label>
-            <input type="text" id="username" name='username' class="form-control">
+            <label for="myname">用户名</label>
+            <input type="text" id="myname" name='username' class="form-control">
           </div>
           <div class="form-group">
-            <label for="pwd">密码</label>
-            <input type="password" id="pwd" name='password' class="form-control">
+            <label for="mypwd">密码</label>
+            <input type="password" id="mypwd" name='password' class="form-control">
           </div>
         </div>
         <div class="modal-footer">
@@ -81,12 +82,12 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="username">用户名</label>
-            <input type="text" id="username" name="username" class="form-control">
+            <label for="mynewName">用户名</label>
+            <input type="text" id="mynewName" name="username" class="form-control">
           </div>
           <div class="form-group">
-            <label for="pwd">密码</label>
-            <input type="password" id="pwd" name="pwd" class="form-control">
+            <label for="mynewpwd">密码</label>
+            <input type="password" id="mynewpwd" name="pwd" class="form-control">
           </div>
         </div>
         <div class="modal-footer">
