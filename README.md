@@ -13,7 +13,7 @@ $ open http://localhost:7001/
 >6. 自定义扩展插件 `formatTime` 进行时间的格式化
 >7. 电影评论与回复逻辑的实现
 >8. `session` 的使用
-> 界面使用 `Bootstrap` 布局，自适应屏幕大小
+>9. 界面使用 `Bootstrap` 布局，自适应屏幕大小
 
 ![image](https://github.com/accforgit/douban-by-Egg/blob/master/douban_egg.gif)
 
